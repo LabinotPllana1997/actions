@@ -1,0 +1,15 @@
+boto3==1.23.5
+pandas==1.4.2
+Pillow==9.1.1
+psycopg2==2.9.3
+psycopg2_binary==2.9.3
+pydantic==1.9.1
+selenium==4.3.0
+SQLAlchemy==1.4.36
+tqdm==4.64.0
+webdriver_manager==3.7.0
+
+# urllib3==1.26.9
+# regex==2022.7.25
+# # s3transfer==0.6.0
+# awscli==1.25.24

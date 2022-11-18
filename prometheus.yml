@@ -1,0 +1,16 @@
+# Section with default values
+global:
+  scrape_interval: 1s # How frequently to scrape targets from jobs
+  scrape_timeout: 1s # If there is no response from the instance, do not attempt to scrape.
+  evaluation_interval: 15s # How frequently to evaluate rules (e.g. reload graphs with new data).
+# Prometheus alert manager (left for now).
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it is Prometheus itself.
+scrape_configs:
+  # The job name added as a label `job=<job_name>` to any timeseries scraped
+  - job_name: 'prometheus'
+    # Override the global default and scrape targets from the job every 5 seconds.
+    scrape_interval: '5s'
+    static_configs:
+      - targets: ['localhost:9090', '35.178.170.36:9090']

@@ -242,14 +242,7 @@ class WebScrape:
             self.save_locally(product_information_dictionary, parent_dir, file_name)
             self.s3_upload(file_name, self.bucket_name, f'{product_information_dictionary["product_code"]}.json')
             self.upload_images_to_s3(product_information_dictionary)
-            # dfs = pd.read_json(file_name)
-            # self.upload_to_rds_database_using_pandas(pd.read_json(file_name), file_name, 'ted_baker_scrape')
-        # print(all_product_names)
-        # print(all_prices)
-        # print(all_product_descriptions)
-        # info_dictionary = dict(zip(product_descriptions, all_product_names))
-        # print(info_dictionary)
-        # df = pd.DataFrame.from_dict(product_information_dictionary)
+
         dfsf = pd.DataFrame(product_information)
         print(dfsf)
         #self.upload_to_rds_database_using_pandas(dfsf, 'ted_baker_trial')
@@ -304,12 +297,7 @@ class WebScrape:
         saves data in json file in the path /home/labinotpllana1997/Documents/raw_data
         by calling a another method to create a JSON file
         '''
-        #### define parent directory in retrieve info and have it as an argument here
 
-
-        # parent_dir = "/home/labinotpllana1997/Documents/raw_data"
-        # file_name = f'{parent_dir}/{product_information_dictionary["product_code"]}/data.json' #there was a .json at the end here
-        # path = os.path.join(parent_dir, directory) # makes path "/home/Documents/raw_data"
         if os.path.exists(parent_dir)== False:
             os.makedirs(parent_dir)
         if os.path.exists(f'{parent_dir}/{product_information_dictionary["product_code"]}')== False:
@@ -424,32 +412,6 @@ class WebScrape:
         return product_code
 
 
-
-    # def check_on_s3_json(self, product_dict: Dict) -> bool:
-    #     """Will visit S3 and check whether the .json has been put on S3
-    #     Args:
-    #         product_dict (dict): Dictionary of the product details which have been scraped
-    #     Returns:
-    #         bool
-    #     """
-    #     for object in objects:
-    #         self.images_scraped_cloud.append(object.key)
-
-    #     if f'{product_dict["product_no"]}.json' in self.images_scraped_cloud:
-    #         print(f'Product: {product_dict["product_no"]} .json file has already been uploaded to S3')
-    #         return True
-    #     else:
-    #         return False
-
-
-
-
-
-
-
-
-    
-
     def get_product_code(self):
         product_code = self.driver.current_url.split('/')[-1]
         print(product_code)
@@ -463,35 +425,8 @@ if __name__ == '__main__':
     ted_baker_scrape = WebScrape("https://www.tedbaker.com/uk/c/mens/clothing/shirts/680")
     ted_baker_scrape.accept_cookies()
     ted_baker_scrape.close_pop_up()
-  #  ted_baker_scrape.click_shirt()
-    #ted_baker_scrape.close_pop_up()
-    # ted_baker_scrape.page_scroll()
-    # ted_baker_scrape.click_shirt()
-    # ted_baker_scrape.close_pop_up()
-    #ted_baker_scrape.extract_page_links('//div[@data-testid="plp-grid"]//a', 'href', "https://www.tedbaker.com/uk/c/mens/clothing/shirts/680")
-    #ted_baker_scrape.get_details()
-    #ted_baker_scrape.get_images_from_container('//*[@class="products-listing-pagestyled__ProductImage-sc-89atcl-5 EBhGg"]', 'src', "https://www.tedbaker.com/uk/c/mens/clothing/shirts/680")
-    #ted_baker_scrape.retrieve_names()
-    #ted_baker_scrape.get_unique_id()
-    #ted_baker_scrape = WebScrape()
+
     ted_baker_scrape.retrieve_info()
     #ted_baker_scrape.save_locally()
 
 
-
-# %%
-# import pandas as pd
-# new_entry = {'price': '£30', 'Description': 't-shirt', 'Size': 'Medium'}
-# print(new_entry['price'])
-# slags = pd.DataFrame([new_entry])
-# # print(slags)
-# # %%
-# list = []
-# for i in range(1,10):
-#     if i%2 == 0:
-#         list.append(i)
-# # should return list of even number within the range set
-
-# print(list)
-
-# %%
